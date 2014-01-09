@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mental Poker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-2.0.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Mental Poker</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Base</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="starter-about">
+        <h1>Bienvenue sur notre application de Mental Poker</h1>
+        <p class="lead">Cette application a ete realisee par Cyril Cecchinel et Matthieu Jimenez dans le cadre du cours Provable Cryptographie</p>
+        <p>
+            <h2>But</h2>
+            Le but du mental poker comme pour le poker standard est de posseder la meilleur main, pour remporter la partie.<br/>
+            La difference est qu'ici il n'y a pas de croupier, et que les cartes doivent etre distribue sans triche entre les 2 joueurs
+            La presente implementation reprend ce qui a ete propose par shami Rivest et Adleman en 1981.
+
+        </p>
+        <p> <h2>Deroulement</h2>
+            Le jeu est compose de 16 cartes classiques, 2 joueurs vont se voir distribuer 5 cartes, celui qui aura la meilleur main
+            gagne la partie.<br/>
+            Pour ce faire, un nombre premier est genere, les 2 joueur cree une cle a l'aide de ce nombre.
+            <ol>
+            <li>Le joueur A (l'utilisateur de cette application) determine l'encodage des cartes</li>
+            <li>Le joueur A envoit a notre webservice (Joueur B) l'encodage choisit via le bouton</li>
+            <li>Le Joueur B lui renvoit les cartes melangees et cryptees avec sa cle</li>
+            <li>Le joueur A ne pouvant reconnaitre les cartes en choisit 5 pour lui et 5 pour le Joueur B</li>
+            <li>Le joueur A envoit ses cartes en les cryptant avec sa cle et envoit les carte du joueur B sans les crypter</li>
+            <li>Le Joueur B decrypte avec sa cle les 2 jeu, recuperant ainsi le sien et renvoit celui du joueur A qui est toujours crypter</li>
+            <li>Le joueur A decrypte ses cartes</li>
+            <li>La partie peut commencer</li>
+            </ol>
+        </p>
+        <p>
+            <h2>Probleme de la Triche</h2>
+            Le probleme du protocole SRA utilise dans cette implementation est qu'il est vulnerable aux residus quadratiques.<br/>
+            Ainsi si, le joueur A choisit un residu quadratique de 1 uniquement pour les As, il sera en mesure de les retrouver
+            car ceux ci restent meme apres encryption. C'est ce que propose les boutons de Triche de l'application.
+        </p>
+
+
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        <p class="text-muted">Cecchinel Jimenez 2014.</p>
+    </div>
+</div>
+</body>
+</html>
