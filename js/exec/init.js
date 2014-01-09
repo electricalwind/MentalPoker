@@ -255,6 +255,5 @@ function randomPick (dejavu){
         var index = Math.floor(Math.random() * shuffledCard.length)
     }
     var card = shuffledCard[index];
-    //shuffledCard.splice(index, 1);
     return parseInt(card);
 }
